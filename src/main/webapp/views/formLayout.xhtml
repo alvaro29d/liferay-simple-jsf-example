@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+
+<f:view xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+	<h:head />
+	<h:body>
+
+		<div class="bnp-form">
+
+			<div id="content" class="row-fluid">
+				<div class="well well-large span8 offset2">
+
+					<ui:insert name="stepBar">
+						<h:outputScript target="body">
+							window.onunload = function() {
+							    return 'You have unsaved changes!';
+							}
+						</h:outputScript>
+					</ui:insert>
+					
+					<ui:insert name="content">
+					</ui:insert>
+
+				</div>
+			</div>
+
+		</div>
+	</h:body>
+</f:view>

@@ -1,0 +1,40 @@
+<?xml version="1.0"?>
+
+<faces-config version="2.1" xmlns="http://java.sun.com/xml/ns/javaee"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-facesconfig_2_1.xsd">
+
+<application>
+		<el-resolver>org.springframework.web.jsf.el.SpringBeanFacesELResolver</el-resolver>
+		<locale-config>
+			<default-locale>es</default-locale>
+			<supported-locale>es</supported-locale>
+		</locale-config>
+		<resource-bundle>
+			<base-name>properties.messages</base-name>
+			<var>msg</var>
+		</resource-bundle>
+	</application>
+
+	<lifecycle>
+		<phase-listener>com.liferay.faces.util.lifecycle.DebugPhaseListener</phase-listener>
+	</lifecycle>
+
+<!-- 
+	<managed-bean eager="true">
+		<managed-bean-name>liferayFacesContext</managed-bean-name>
+		<managed-bean-class>com.liferay.faces.portal.context.LiferayFacesContextImpl</managed-bean-class>
+		<managed-bean-scope>application</managed-bean-scope>
+	</managed-bean>
+ -->
+
+<!-- 
+	<managed-bean>
+		<managed-bean-name>headManagedBean</managed-bean-name>
+		<managed-bean-class>com.liferay.faces.bridge.renderkit.html_basic.HeadManagedBean</managed-bean-class>
+		<managed-bean-scope>view</managed-bean-scope>
+	</managed-bean>
+ -->
+	
+
+</faces-config>

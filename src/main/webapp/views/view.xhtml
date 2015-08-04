@@ -1,0 +1,38 @@
+<?xml version="1.0"?>
+
+<f:view xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+	<h:head />
+	<h:body>
+
+		<ui:composition template="/views/formLayout.xhtml">
+			<ui:define name="content">
+
+				<h:form>
+
+					<h1>View1</h1>
+
+					<h:outputText value="JSF Version" />
+					<h:outputText value="#{viewBean.jsfVersion}"/>
+
+					<h:inputText id="nroDocumentoId" value="#{viewBean.idUser}" 
+						styleClass="input-block-level" required="true" requiredMessage="Ingrese un valor">
+						<f:validator validatorId="viewBeanValidator" />
+					</h:inputText>     		
+					<h:message id="mFechaId" for="nroDocumentoId" style="color:red" errorClass="input-block-level"/>
+					
+					<h:commandButton id="btnAceptarId" value="aceptar"
+						action="#{viewBean.aceptar}" styleClass="btn btn-primary">
+					</h:commandButton>
+
+					<h:commandButton id="btnVolverId" value="volver" immediate="true"
+						action="#{viewBean.volver}" styleClass="btn btn-primary">
+					</h:commandButton>
+				</h:form>
+			</ui:define>
+		</ui:composition>
+	</h:body>
+</f:view>

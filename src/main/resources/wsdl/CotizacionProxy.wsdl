@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions targetNamespace="http://impl.ws.cardif.com"
+	xmlns:apachesoap="http://xml.apache.org/xml-soap" xmlns:impl="http://impl.ws.cardif.com"
+	xmlns:intf="http://impl.ws.cardif.com" xmlns:tns1="http://bo.domain.cardif.com"
+	xmlns:tns2="http://exception.domain.cardif.com" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+	xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+	<wsdl:types>
+		<schema elementFormDefault="qualified" targetNamespace="http://impl.ws.cardif.com"
+			xmlns="http://www.w3.org/2001/XMLSchema">
+			<import namespace="http://exception.domain.cardif.com" />
+			<import namespace="http://bo.domain.cardif.com" />
+			<element name="doCotizar">
+				<complexType>
+					<sequence>
+						<element name="idProduct" type="xsd:string" />
+						<element name="idPlan" type="xsd:string" />
+						<element name="idContracting" type="xsd:string" />
+						<element name="birthDate" type="xsd:dateTime" />
+					</sequence>
+				</complexType>
+			</element>
+			<element name="doCotizarResponse">
+				<complexType>
+					<sequence>
+						<element name="doCotizarReturn" type="tns1:Cotizacion" />
+					</sequence>
+				</complexType>
+			</element>
+			<element name="fault" type="tns2:CardifException" />
+		</schema>
+		<schema elementFormDefault="qualified" targetNamespace="http://bo.domain.cardif.com"
+			xmlns="http://www.w3.org/2001/XMLSchema">
+			<complexType name="Cotizacion">
+				<sequence>
+					<element name="idProduct" nillable="true" type="xsd:string" />
+					<element name="tplan" nillable="true" type="xsd:string" />
+					<element name="tprice" nillable="true" type="xsd:string" />
+				</sequence>
+			</complexType>
+		</schema>
+		<schema elementFormDefault="qualified" targetNamespace="http://exception.domain.cardif.com"
+			xmlns="http://www.w3.org/2001/XMLSchema">
+			<complexType name="CardifException">
+				<sequence />
+			</complexType>
+		</schema>
+	</wsdl:types>
+	<wsdl:message name="CardifException">
+		<wsdl:part element="impl:fault" name="fault">
+		</wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="doCotizarRequest">
+		<wsdl:part element="impl:doCotizar" name="parameters">
+		</wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="doCotizarResponse">
+		<wsdl:part element="impl:doCotizarResponse" name="parameters">
+		</wsdl:part>
+	</wsdl:message>
+	<wsdl:portType name="CotizarImpl">
+		<wsdl:operation name="doCotizar">
+			<wsdl:input message="impl:doCotizarRequest" name="doCotizarRequest">
+			</wsdl:input>
+			<wsdl:output message="impl:doCotizarResponse" name="doCotizarResponse">
+			</wsdl:output>
+			<wsdl:fault message="impl:CardifException" name="CardifException">
+			</wsdl:fault>
+		</wsdl:operation>
+	</wsdl:portType>
+	<wsdl:binding name="CotizarImplSoapBinding" type="impl:CotizarImpl">
+		<wsdlsoap:binding style="document"
+			transport="http://schemas.xmlsoap.org/soap/http" />
+		<wsdl:operation name="doCotizar">
+			<wsdlsoap:operation soapAction="" />
+			<wsdl:input name="doCotizarRequest">
+				<wsdlsoap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output name="doCotizarResponse">
+				<wsdlsoap:body use="literal" />
+			</wsdl:output>
+			<wsdl:fault name="CardifException">
+				<wsdlsoap:fault name="CardifException" use="literal" />
+			</wsdl:fault>
+		</wsdl:operation>
+	</wsdl:binding>
+	<wsdl:service name="CotizarImplService">
+		<wsdl:port binding="impl:CotizarImplSoapBinding" name="CotizarImpl">
+			<wsdlsoap:address
+				location="http://0.0.0.0:8080/services/cotizar" />
+		</wsdl:port>
+	</wsdl:service>
+</wsdl:definitions>

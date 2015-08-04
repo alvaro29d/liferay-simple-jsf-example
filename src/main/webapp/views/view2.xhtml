@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+
+<f:view xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+	<h:head />
+	<h:body>
+		<ui:composition template="/views/formLayout.xhtml">
+			<ui:define name="content">
+
+				<h:form>
+
+					<h1>View2</h1>
+
+					<h:outputText value="#{dataManagerBean.cod}" />
+
+	
+
+
+					<h:commandButton id="btnAceptarId" value="aceptar"
+						action="#{secondViewBean.aceptar}" styleClass="btn btn-primary">
+					</h:commandButton>
+
+					<h:commandButton id="btnVolverId" value="volver" immediate="true"
+						action="#{secondViewBean.volver}" styleClass="btn btn-primary">
+					</h:commandButton>
+				</h:form>
+			</ui:define>
+		</ui:composition>
+	</h:body>
+</f:view>
